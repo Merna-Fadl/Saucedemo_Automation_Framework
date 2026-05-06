@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Full Regression Suite">
+
+    <!-- يجب إضافة قسم الـ listeners هنا قبل قسم الـ test -->
+    <listeners>
+        <listener class-name="Utils.TestListener" />
+    </listeners>
+
+    <test name="All Tests">
+        <classes>
+            <class name="tests.LoginTests"/>
+            <class name="tests.E2e"/>
+        </classes>
+    </test>
+</suite>
