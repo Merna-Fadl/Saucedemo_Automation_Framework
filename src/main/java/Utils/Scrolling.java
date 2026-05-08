@@ -9,8 +9,8 @@ public class Scrolling {
    private GUIDriver driver;
     public Scrolling( GUIDriver driver){this.driver=driver;}
     public  void ScrollToElement( By locator){
-        WebElement element = driver.get(ConfigReader.getProperty("url")).findElement(locator);
-        Actions actions = new Actions(driver.get(ConfigReader.getProperty("url")));
+        WebElement element = driver.getDriver().findElement(locator);
+        Actions actions = new Actions(driver.getDriver());
         actions.moveToElement(element).perform();
     }
 

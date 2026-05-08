@@ -36,9 +36,9 @@ public class TestListener implements ITestListener, IExecutionListener, IInvoked
                 testResult.setThrowable(e);
             }
             switch (testResult.getStatus()){
-                case ITestResult.SUCCESS ->  ElementActions.takeScreenShot(GUIDriver.get(ConfigReader.getProperty("url")),"passed - "+ testResult.getName());
-                case ITestResult.FAILURE ->  ElementActions.takeScreenShot(GUIDriver.get(ConfigReader.getProperty("url")),"failed - "+ testResult.getName());
-                case ITestResult.SKIP ->  ElementActions.takeScreenShot(GUIDriver.get(ConfigReader.getProperty("url")),"skipped - "+ testResult.getName());
+                case ITestResult.SUCCESS ->  ElementActions.takeScreenShot(GUIDriver.getDriver(),"passed - "+ testResult.getName());
+                case ITestResult.FAILURE ->  ElementActions.takeScreenShot(GUIDriver.getDriver(),"failed - "+ testResult.getName());
+                case ITestResult.SKIP ->  ElementActions.takeScreenShot(GUIDriver.getDriver(),"skipped - "+ testResult.getName());
             }
 
             // إرفاق الـ Logs بتقرير Allure في نهاية كل ميثود (سواء نجحت أو فشلت)

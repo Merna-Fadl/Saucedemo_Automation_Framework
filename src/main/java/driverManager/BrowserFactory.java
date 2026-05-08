@@ -35,7 +35,7 @@ public class BrowserFactory {
         options.addArguments("--disable-extensions");           // تعطيل الإضافات
         options.addArguments("--disable-infobars");
         options.addArguments("--disable-features=PasswordLealDetection");
-        //  options.addArguments("--headless");                     // تشغيل بدون واجهة
+          options.addArguments("--headless");                     // تشغيل بدون واجهة
         // options.addArguments("--window-size=1920,1080");        // حجم نافذة معين
 //                options.addArguments("--lang=en");                      // تعيين لغة المتصفح
 //                options.addArguments("--ignore-certificate-errors");    // تجاهل أخطاء الشهادات

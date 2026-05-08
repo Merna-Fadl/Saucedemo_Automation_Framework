@@ -29,7 +29,7 @@ public class ElementActions {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
     public WebElement findElement(By locator){
-        return driver.get(ConfigReader.getProperty("url")).findElement(locator);
+        return driver.getDriver().findElement(locator);
 
     }
     @Step("Type [{key}] into element: {locator}")

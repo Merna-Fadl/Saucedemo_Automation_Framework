@@ -1,6 +1,24 @@
 {
   "firstName": "M",
-  "lastName": "F ",
+  "lastName": "F",
   "zipCode": "12345",
-  "productName": "Sauce Labs Backpack"
+  "productName": "Sauce Labs Backpack",
+  "invalidUsername": "wrong_user",
+  "invalidPassword": "wrong_password",
+  "lockedUser": "locked_out_user",
+  "usernameRequiredError":
+  "Epic sadface: Username is required",
+  "passwordRequiredError":
+  "Epic sadface: Password is required",
+  "invalidCredentialsError":
+  "Epic sadface: Username and password do not match any user in this service",
+  "lockedUserError":
+  "Epic sadface: Sorry, this user has been locked out.",
+  "firstNameRequired":
+  "Error: First Name is required",
+  "lastNameRequired":
+  "Error: Last Name is required",
+  "postalCodeRequired":
+  "Error: Postal Code is required"
+
 }

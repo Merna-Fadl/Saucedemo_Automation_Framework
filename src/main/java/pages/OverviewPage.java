@@ -1,6 +1,7 @@
 package pages;
 
 import driverManager.GUIDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -14,6 +15,7 @@ public class OverviewPage {
    private final By totalLabel = By.className("summary_total_label");
    private final By finishButton = By.id("finish");
 
+    @Step("Verifying that the actual price matches the calculated expected total")
    public OverviewPage verifyTotalPrice(){
        // 1. قراءة النص من الصفحة (بيكون: "Item total: $89.97")
        String actualTotalText = driver.elementActions().getText(subTotalLabel);
@@ -23,6 +25,7 @@ public class OverviewPage {
        return this;
    }
 
+    @Step("Clicking Finish button")
    public SuccessPage clickFinish(){
        driver.elementActions().clickElement(finishButton);
        return new SuccessPage(driver);

@@ -1,10 +1,8 @@
-package tests;
+package tests.negative;
 
 import Utils.ConfigReader;
 import driverManager.GUIDriver;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseLoginTest {
@@ -14,9 +12,9 @@ public class BaseLoginTest {
     public void setUp() {
         String browser = ConfigReader.getProperty("browser");
         driver = new GUIDriver(browser);
-        driver.get(ConfigReader.getProperty("url")).manage().window().maximize();
+        driver.getDriver().manage().window().maximize();
         String url = ConfigReader.getProperty("url");
-        driver.get(ConfigReader.getProperty("url")).get(url);
+        driver.getDriver().get(url);
     }
 
     @AfterMethod

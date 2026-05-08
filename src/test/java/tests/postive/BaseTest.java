@@ -1,4 +1,4 @@
-package tests;
+package tests.postive;
 
 import Utils.ConfigReader;
 import org.testng.annotations.*;
@@ -11,9 +11,9 @@ public class BaseTest {
     public void setUp() {
         String browser = ConfigReader.getProperty("browser");
         driver = new GUIDriver(browser);
-        driver.get(ConfigReader.getProperty("url")).manage().window().maximize();
+        driver.getDriver().manage().window().maximize();
         String url = ConfigReader.getProperty("url");
-        driver.get(ConfigReader.getProperty("url")).get(url);
+        driver.getDriver().get(url);
     }
 
     @AfterClass

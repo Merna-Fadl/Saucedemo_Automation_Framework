@@ -1,14 +1,12 @@
-package tests;
+package tests.postive;
 
 import Utils.ConfigReader;
-import Utils.ElementActions;
-import Utils.TestListener;
 import io.qameta.allure.*;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.LoginPage;
 import pages.ProductsPage;
+
 //@Listeners(TestListener.class)
 @Feature("End to End Purchase Flow")
 @Severity(SeverityLevel.CRITICAL)
@@ -18,9 +16,10 @@ public class E2e extends BaseTest {
 
     @Description("Full flow from login to adding items to cart and finishing checkout.")
     @Test
+    @Step("Step 1: Login with valid credentials")
     public void successLogintest(){
          new LoginPage(driver)
-        .EnterUsername(ConfigReader.getProperty("username"))
+        .enterUsername(ConfigReader.getProperty("username"))
        .enterPassword(ConfigReader.getProperty("password"))
        .clickLogin()
         .assertSuccessfulLogin();
@@ -29,6 +28,7 @@ public class E2e extends BaseTest {
 
     }
     @Test(dependsOnMethods = "successLogintest")
+    @Step("Step 2: Add multiple products and verify cart badge")
     public void addMultipleProductsFlow(){
         new ProductsPage(driver)
                 .addItem1()
@@ -40,6 +40,7 @@ public class E2e extends BaseTest {
     }
 
     @Test(dependsOnMethods = "addMultipleProductsFlow")
+    @Step("Step 3: Complete checkout and verify total price calculation")
     public void completeCheckOutFlow(){
         new CartPage(driver)
                 .clickCheckout()

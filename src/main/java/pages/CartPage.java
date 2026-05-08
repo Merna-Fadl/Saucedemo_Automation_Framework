@@ -23,7 +23,7 @@ public class CartPage {
     // ميثود عشان نتأكد إن المنتج موجود
     private CartPage verifyProductExists(String productName) {
         // بنجيب كل الأسماء اللي في الصفحة ونحطها في لستة
-        List<WebElement> products = driver.get(ConfigReader.getProperty("url")).findElements(cartItemsName);
+        List<WebElement> products = driver.getDriver().findElements(cartItemsName);
 
         // بنلف على الأسماء دي ونشوف هل اسم المنتج اللي إحنا عايزينه موجود؟
         boolean isFound = false;

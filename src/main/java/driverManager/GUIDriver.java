@@ -19,12 +19,16 @@ public class GUIDriver {
     }
 
     // الميثود الأساسية لجلب الـ WebDriver
-    public static WebDriver get(String url) {
+    public static WebDriver getDriver() {
         if (driverThreadLocal.get() == null) {
             LogsUtil.error("Driver is null! Make sure it's initialized.");
             fail("Driver is null");
         }
         return driverThreadLocal.get();
+    }
+    // فتح URL بشكل واضح
+    public void navigateTo(String url) {
+        getDriver().get(url);
     }
 
     // ميثود لربط الأكشنز بالدرايفر الحالي
@@ -35,7 +39,7 @@ public class GUIDriver {
     // لغلق المتصفح وتنظيف الـ ThreadLocal
     public void quit() {
         if (driverThreadLocal.get() != null) {
-            get(ConfigReader.getProperty("url")).quit();
+            getDriver().quit();
             driverThreadLocal.remove();
             LogsUtil.info("Driver closed and ThreadLocal removed.");
         }

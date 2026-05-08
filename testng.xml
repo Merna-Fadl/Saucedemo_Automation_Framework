@@ -9,8 +9,11 @@
 
     <test name="All Tests">
         <classes>
-            <class name="tests.LoginTests"/>
-            <class name="tests.E2e"/>
+            <class name="tests.postive.E2e"/>
+            <class name="tests.postive.LogoutTests"/>
+            <class name="tests.negative.InvalidLoginTests"/>
+            <class name="tests.negative.CheckoutNegativeTests"/>
+
         </classes>
     </test>
 </suite>
