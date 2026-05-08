@@ -11,15 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4 # تحديث للأصدار الأحدث
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Set up JDK 22
-      uses: actions/setup-java@v4
-      with:
-        java-version: '22' # هنا غيرنا الرقم لـ 22
-        distribution: 'oracle' # أوراكل هي الأفضل لدعم إصدار 22 حالياً
-        cache: maven
+      - name: Set up JDK 22
+        uses: actions/setup-java@v4
+        with:
+          java-version: '22'
+          distribution: 'oracle'
+          cache: maven
 
-    - name: Run All Tests
-      run: mvn test
+      - name: Download Dependencies
+        run: mvn dependency:go-offline # السطر ده بيضمن إن كل الملفات تنزل كاملة الأول
+
+      - name: Run All Tests
+        run: mvn test -DsuiteXmlFile=testng.xml # تأكدي من اسم ملف الـ xml بتاعك

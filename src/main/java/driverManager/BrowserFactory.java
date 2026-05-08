@@ -54,7 +54,7 @@ public class BrowserFactory {
         option1.addArguments("--disable-extensions");           // تعطيل الإضافات
         option1.addArguments("--disable-infobars");
         option1.addArguments("--disable-features=PasswordLealDetection");
-        //  option.addArguments("--headless");                     // تشغيل بدون واجهة
+         option1.addArguments("--headless");                     // تشغيل بدون واجهة
         // options.addArguments("--window-size=1920,1080");        // حجم نافذة معين
 //                options.addArguments("--lang=en");                      // تعيين لغة المتصفح
 //                options.addArguments("--ignore-certificate-errors");    // تجاهل أخطاء الشهادات
@@ -71,6 +71,7 @@ public class BrowserFactory {
         option.addArguments("--disable-extensions");           // تعطيل الإضافات
         option.addArguments("--disable-infobars");
         option.addArguments("--disable-features=PasswordLealDetection");
+        option.addArguments("--headless");
 
         option.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         option.setAcceptInsecureCerts(true);
