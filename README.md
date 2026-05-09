@@ -79,3 +79,6 @@ Test status (Pass/Fail/Skip)
 Step-by-step execution logs
 
 Embedded screenshots for failed cases
+
+📊 Live Execution Report: Click here to view the latest Allure Repor
+https://merna-fadl.github.io/Saucedemo_Automation_Framework/6/index.html
