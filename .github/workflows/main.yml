@@ -3,7 +3,7 @@ name: UI Regression Tests
 on:
   push:
     branches: [ main ]
-  workflow_dispatch: # إضافة إمكانية تشغيل الـ Pipeline يدوياً
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -28,11 +28,13 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Run Tests
-        # تأكدي إن مسار الـ testng.xml صح بالنسبة لمجلد المشروع
-        run: mvn test -DsuiteXmlFile=testng.xml -Dbrowser=${{ matrix.browser }}
+      - name: List Files to verify path
+        run: ls -R
 
-        continue-on-error: true # مهم عشان لو تست فشل يكمل ويطلع التقرير
+      - name: Run Tests
+        # تأكدي إن الملف في الـ Root ونفس الحروف بالضبط testng.xml
+        run: mvn test -DsuiteXmlFile=testng.xml -Dbrowser=${{ matrix.browser }}
+        continue-on-error: true
 
       - name: Load Allure history
         uses: actions/checkout@v4
