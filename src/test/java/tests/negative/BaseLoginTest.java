@@ -15,9 +15,9 @@ public class BaseLoginTest {
     @BeforeMethod
     public void setUp(@Optional("chrome") String browser) {
         // الأولوية للي جاي من الـ Command Line (GitHub Matrix) وبعدين الـ XML
-        String finalBrowser = System.getProperty("browser", browser);
+        String Browser = System.getProperty("browser", browser);
         // @Optional بتضمن إن التست يشتغل حتى لو شغلتي الكلاس لوحده من غير XML
-        driver = new GUIDriver(finalBrowser);
+        driver = new GUIDriver(Browser);
         driver.getDriver().manage().window().setSize(new Dimension(1920, 1080));
         driver.getDriver().manage().window().maximize();
         driver.getDriver().get(ConfigReader.getProperty("url"));
