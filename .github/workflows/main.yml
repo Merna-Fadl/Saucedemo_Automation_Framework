@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Tests
         # تأكدي إن الملف في الـ Root ونفس الحروف بالضبط testng.xml
-        run: mvn test -DsuiteXmlFile=testng.xml
+        run: mvn test -DsuiteXmlFile=testng.xml -Dbrowser=${{ matrix.browser }}
 
         continue-on-error: true
 
