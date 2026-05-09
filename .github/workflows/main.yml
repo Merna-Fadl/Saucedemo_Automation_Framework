@@ -1,4 +1,4 @@
-name: Swag Labs CI/CD
+name: UI Regression Tests
 
 on:
   push:
@@ -7,40 +7,38 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    strategy:
+      matrix:
+        # هيفتح سيرفر للكروم وسيرفر للفايرفوكس في نفس الوقت
+        browser: [chrome, firefox]
+      fail-fast: false
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up JDK 22
         uses: actions/setup-java@v4
         with:
           java-version: '22'
-          distribution: 'oracle'
-          cache: maven
+          distribution: 'temurin'
 
-      - name: Run All Tests
-        run: mvn test -DsuiteXmlFile=testng.xml
+      - name: Run Tests
+        # بنمرر المتصفح من الـ Matrix للكود بتاعك
+        run: mvn test -DsuiteXmlFile=src/test/java/tests/postive/testng.xml -Dbrowser=${{ matrix.browser }}
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
         continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
 
       - name: Allure Report Action
-        uses: simple-elf/allure-report-action@master
+        uses: mgrybyk/allure-report-action@v3
         if: always()
         with:
-          allure_results: test-outputs/allure-results
+          allure_results: allure-results
           gh_pages: gh-pages
           allure_report: allure-report
-          allure_history: allure-history
-          keep_reports: 20
-
-      - name: Deploy Report
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-history
-          publish_branch: gh-pages
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          subfolder: allure-report
