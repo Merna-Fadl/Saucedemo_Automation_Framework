@@ -36,7 +36,7 @@ public class BrowserFactory {
         options.addArguments("--disable-infobars");
         options.addArguments("--disable-features=PasswordLealDetection");
           options.addArguments("--headless");                     // تشغيل بدون واجهة
-        // options.addArguments("--window-size=1920,1080");        // حجم نافذة معين
+         options.addArguments("--window-size=1920,1080");        // حجم نافذة معين
 //                options.addArguments("--lang=en");                      // تعيين لغة المتصفح
 //                options.addArguments("--ignore-certificate-errors");    // تجاهل أخطاء الشهادات
 //                options.addArguments("--no-sandbox");                   // مناسب للـ Linux و Docker
@@ -55,7 +55,7 @@ public class BrowserFactory {
         option1.addArguments("--disable-infobars");
         option1.addArguments("--disable-features=PasswordLealDetection");
          option1.addArguments("--headless");                     // تشغيل بدون واجهة
-        // options.addArguments("--window-size=1920,1080");        // حجم نافذة معين
+         option1.addArguments("--window-size=1920,1080");        // حجم نافذة معين
 //                options.addArguments("--lang=en");                      // تعيين لغة المتصفح
 //                options.addArguments("--ignore-certificate-errors");    // تجاهل أخطاء الشهادات
 //                options.addArguments("--no-sandbox");                   // مناسب للـ Linux و Docker
@@ -70,8 +70,12 @@ public class BrowserFactory {
         option.addArguments("--disable-notifications");        // منع الإشعارات
         option.addArguments("--disable-extensions");           // تعطيل الإضافات
         option.addArguments("--disable-infobars");
+        // السطر ده هو "السر" عشان يشتغل صح في وضع الـ Headless على بعض النسخ
+        option.addArguments("-window-size=1920,1080");
         option.addArguments("--disable-features=PasswordLealDetection");
         option.addArguments("--headless");
+        option.addArguments("--width=1920"); // ضيفي السطر ده
+        option.addArguments("--height=1080");
 
         option.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         option.setAcceptInsecureCerts(true);

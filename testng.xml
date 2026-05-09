@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Full Regression Suite">
+<suite name="Full Regression Suite" parallel="tests" thread-count="2">
 
-    <!-- يجب إضافة قسم الـ listeners هنا قبل قسم الـ test -->
     <listeners>
         <listener class-name="Utils.TestListener" />
     </listeners>
 
-    <test name="All Tests">
+    <test name="Regression Tests - Chrome">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="tests.postive.E2e"/>
             <class name="tests.postive.LogoutTests"/>
             <class name="tests.negative.InvalidLoginTests"/>
             <class name="tests.negative.CheckoutNegativeTests"/>
-
         </classes>
     </test>
+
+    <test name="Regression Tests - Firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="tests.postive.E2e"/>
+            <class name="tests.postive.LogoutTests"/>
+            <class name="tests.negative.InvalidLoginTests"/>
+            <class name="tests.negative.CheckoutNegativeTests"/>
+        </classes>
+    </test>
+
 </suite>

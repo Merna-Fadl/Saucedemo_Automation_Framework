@@ -49,16 +49,23 @@ public class ElementActions {
         }
     }
     @Step("Click on element: {locator}")
-    public void clickElement(By locator){
+    public void clickElement(By locator) {
         try {
             waits.waitForElementClickable(locator);
             scrolling.ScrollToElement(locator);
-            findElement(locator).click();
-            // إضافة Log عند النجاح
-            LogsUtil.info("Successfully clicked on element: " , locator.toString());
+
+            try {
+                // محاولة الضغط العادي
+                findElement(locator).click();
+            } catch (Exception e) {
+                // لو فشل (زي حالة Firefox headless)، نستخدم JS كـ Backup
+                LogsUtil.warn("Normal click failed, trying JavaScript click for: " + locator);
+                ((JavascriptExecutor) driver.getDriver()).executeScript("arguments[0].click();", findElement(locator));
+            }
+
+            LogsUtil.info("Successfully clicked on element: ", locator.toString());
         } catch (Exception e) {
-            // إضافة Log عند الفشل
-            LogsUtil.error("Failed to click on element: " , locator.toString() , ". Error: " , e.getMessage());
+            LogsUtil.error("Failed to click on element: ", locator.toString(), ". Error: ", e.getMessage());
             throw e;
         }
     }

@@ -30,10 +30,11 @@ public class ProductsPage {
     // ميثود مساعدة لتحويل السعر من نص لرقم وجمعه
     @Step("Adding price to total expected sum")
     private void addPriceToTotal(By priceLocator) {
-        String priceText = driver.elementActions().getText(priceLocator); // بيجيب مثلاً "$29.99"
-        double price = Double.parseDouble(priceText.replace("$", "")); // بيحولها لـ 29.99
-        // هننادي عليه من الـ ConfigReader
-        Utils.ConfigReader.expectedTotal += price;
+        String priceText = driver.elementActions().getText(priceLocator);
+        double price = Double.parseDouble(priceText.replace("$", ""));
+
+        // استخدمي الميثود الجديدة هنا
+        Utils.ConfigReader.addToTotal(price);
     }
     @Step("Adding Item 1 to cart and updating total price")
     public ProductsPage addItem1(){

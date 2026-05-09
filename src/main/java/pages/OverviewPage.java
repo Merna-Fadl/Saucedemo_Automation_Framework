@@ -16,15 +16,14 @@ public class OverviewPage {
    private final By finishButton = By.id("finish");
 
     @Step("Verifying that the actual price matches the calculated expected total")
-   public OverviewPage verifyTotalPrice(){
-       // 1. قراءة النص من الصفحة (بيكون: "Item total: $89.97")
-       String actualTotalText = driver.elementActions().getText(subTotalLabel);
-       // 2. تنظيف النص عشان ناخد الرقم بس
-       double actualPrice = Double.parseDouble(actualTotalText.replaceAll("[^0-9.]", ""));
-       Assert.assertEquals(actualPrice, Utils.ConfigReader.expectedTotal, "Total Price Mismatch!");
-       return this;
-   }
+    public OverviewPage verifyTotalPrice(){
+        String actualTotalText = driver.elementActions().getText(subTotalLabel);
+        double actualPrice = Double.parseDouble(actualTotalText.replaceAll("[^0-9.]", ""));
 
+        // بنادي على المجموع الخاص بالـ Thread ده بس
+        Assert.assertEquals(actualPrice, Utils.ConfigReader.getTotal(), "Total Price Mismatch!");
+        return this;
+    }
     @Step("Clicking Finish button")
    public SuccessPage clickFinish(){
        driver.elementActions().clickElement(finishButton);
