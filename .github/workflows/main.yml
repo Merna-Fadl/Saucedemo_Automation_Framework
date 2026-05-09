@@ -3,42 +3,57 @@ name: UI Regression Tests
 on:
   push:
     branches: [ main ]
+  workflow_dispatch: # إضافة إمكانية تشغيل الـ Pipeline يدوياً
+
+permissions:
+  contents: write
+  pages: write
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # هيفتح سيرفر للكروم وسيرفر للفايرفوكس في نفس الوقت
         browser: [chrome, firefox]
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Set up JDK 22
         uses: actions/setup-java@v4
         with:
           java-version: '22'
           distribution: 'temurin'
+          cache: 'maven'
 
       - name: Run Tests
-        # بنمرر المتصفح من الـ Matrix للكود بتاعك
-        run: mvn test -DsuiteXmlFile=src/test/java/tests/postive/testng.xml -Dbrowser=${{ matrix.browser }}
+        # تأكدي إن مسار الـ testng.xml صح بالنسبة لمجلد المشروع
+        run: mvn test -DsuiteXmlFile=testng.xml -Dbrowser=${{ matrix.browser }}
 
-      - name: Get Allure history
+        continue-on-error: true # مهم عشان لو تست فشل يكمل ويطلع التقرير
+
+      - name: Load Allure history
         uses: actions/checkout@v4
         if: always()
         continue-on-error: true
         with:
           ref: gh-pages
-          path: gh-pages
+          path: gh-pages-dir
 
-      - name: Allure Report Action
-        uses: mgrybyk/allure-report-action@v3
+      - name: Build Allure Report
+        uses: simple-elf/allure-report-action@master
         if: always()
         with:
           allure_results: allure-results
-          gh_pages: gh-pages
-          allure_report: allure-report
-          subfolder: allure-report
+          allure_history: allure-history
+          keep_histories: true
+
+      - name: Deploy Allure Report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-report
+          publish_branch: gh-pages
