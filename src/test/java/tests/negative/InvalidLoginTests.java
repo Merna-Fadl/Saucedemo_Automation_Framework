@@ -51,7 +51,7 @@ public class InvalidLoginTests extends BaseLoginTest {
 
     }
 
-    @Severity(SeverityLevel.CRITICAL)
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify user cannot login with invalid credentials")
 
     @Test(dataProvider = "invalidLoginData")
