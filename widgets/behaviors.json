@@ -1,1 +1,1 @@
-{"total":0,"items":[]}
+{"total":2,"items":[{"uid":"d7f62023cd8dfac5da8ad9e0dca2745e","name":"SauceDemo UI Tests","statistic":{"failed":0,"broken":0,"skipped":0,"passed":3,"unknown":0,"total":3}},{"uid":"703c27644b5266b75ad89e5d6e61edd3","name":"End to End Purchase Flow","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}}]}
