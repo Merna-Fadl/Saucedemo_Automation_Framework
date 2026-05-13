@@ -1,5 +1,5 @@
 "BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
-"0","SauceDemo UI Tests","0","Authentication","2","0","","0"
-"0","SauceDemo UI Tests","0","Checkout Negative Scenarios","6","0","","0"
 "0","SauceDemo UI Tests","0","Login Negative Scenarios","10","0","","0"
 "0","","0","End to End Purchase Flow","6","0","Purchase Multiple Items","0"
+"0","SauceDemo UI Tests","0","Checkout Negative Scenarios","6","0","","0"
+"0","SauceDemo UI Tests","0","Authentication","2","0","","0"
